@@ -1,10 +1,13 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from .models import TesteBd
 
 class TesteConsumer(WebsocketConsumer):
     def connect(self):
         self.room_group_name = self.scope['url_route']['kwargs']['nome']
+        teste = TesteBd(nome=self.room_group_name)
+        teste.save()
         
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,
