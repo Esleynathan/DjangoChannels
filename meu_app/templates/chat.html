@@ -7,6 +7,11 @@
     <title>Channels</title>
 </head>
 <body>
+    <textarea id="chat" readonly> </textarea>
+    <br>
+
+    <input type="text" id="text" placeholder="Digitar...">
+
     <button id="btn">
         Enviar
     </button>
@@ -18,13 +23,14 @@
         chatSocket.onmessage = function(event){
             const data = JSON.parse(event.data)
             console.log(data.message)
+            document.getElementById('chat').value += data.message + "\n"
 
         }
 
         var btn = document.getElementById('btn')
         btn.addEventListener("click", function(event){
             chatSocket.send(JSON.stringify({
-                'message': 'teste'
+                'message': document.getElementById('text').value
             }));
 
         }, true)
