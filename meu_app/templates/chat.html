@@ -13,7 +13,7 @@
 
     <script>
     
-        const chatSocket = new WebSocket("ws://127.0.0.1:8000/ws/app/")
+        const chatSocket = new WebSocket("ws://127.0.0.1:8000/ws/app/{{nome}}/")
 
         chatSocket.onmessage = function(event){
             const data = JSON.parse(event.data)

@@ -19,4 +19,5 @@ def entrar(request):
             return HttpResponse('Nome ou senha inexistentes.')
         
 def chat(request, nome):
+    
     return render(request, 'chat.html', {'nome': nome})
